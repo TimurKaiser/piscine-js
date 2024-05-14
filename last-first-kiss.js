@@ -7,5 +7,5 @@ function last(lasteuh) {
 }
 
 function kiss(fusion) {
-    return fusion[fusion.length-1, fusion[0]];
+    return [fusion[fusion.length-1], fusion[0]];
 }
