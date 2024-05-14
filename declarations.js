@@ -13,8 +13,6 @@ const obj = {
 
 
 
-
-
 const nested = {
     arr: [4, undefined, '2'], // la virgule ici sert a séparer les lignes entre les objects
     obj: {str: "test", num: 3, bool: true } // méthode 2
@@ -22,3 +20,4 @@ const nested = {
 
 Object.freeze(nested)
 Object.freeze(nested.obj) // il faut aussi freeze les objets dans les objets
+Object.freeze(nested.arr) // il faut tout freeze ??
