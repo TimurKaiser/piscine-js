@@ -11,7 +11,7 @@ const obj = {
     undef: undefined,
 };
 
-Object.freeze(obj)
+
 
 
 
@@ -21,3 +21,4 @@ const nested = {
 };
 
 Object.freeze(nested)
+Object.freeze(nested.obj) // il faut aussi freeze les objets dans les objets
