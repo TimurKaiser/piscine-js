@@ -19,5 +19,5 @@ const nested = {
 };
 
 Object.freeze(nested)
-Object.freeze(nested.obj) // il faut aussi freeze les objets dans les objets
-Object.freeze(nested.arr) // il faut tout freeze ??
+Object.freeze(nested.obj) // il faut freeze chaque objet dans des objets
+Object.freeze(nested.arr)
