@@ -1,5 +1,5 @@
 // pas besoin de mettre le ; a la fin mais vaut mieux le mettre a chaque fin de déclaration
-const escapeStr = "`\"'/";
+const escapeStr = "` \\ / \" '";
 const arr = [4, '2'];
 
 
