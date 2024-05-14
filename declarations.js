@@ -11,7 +11,7 @@ const obj = {
     undef: undefined,
 };
 
-Object.freeze(obj);
+Object.freeze(obj)
 
 
 
