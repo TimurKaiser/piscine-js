@@ -1,5 +1,5 @@
 function sign(number) {
-    if (number > O) {
+    if (number > 0) {
         return 1;
     }
     if (number < 0) {
@@ -10,9 +10,5 @@ function sign(number) {
 }
 
 function sameSign(number1, number2) {
-    if (sign(number1) === sign(number2)) { // operateur de comparaison a revoir
-        return true
-    } else {
-        return false
-    }
+    return sign(number1) === sign(number2)// operateur de comparaison a revoir
 }
