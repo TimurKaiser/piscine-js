@@ -16,5 +16,5 @@ function dogYears(planet, ageInSeconds) {
     const ageInDogYears = ageInPlanetYears * 7;
     
 
-    return ageInDogYears.toFixed(2);
+    return parseFloat(ageInDogYears.toFixed(2));
 }
