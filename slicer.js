@@ -4,7 +4,7 @@ function slice(input, startIndex, endIndex) {
     if (typeof input === 'string') {
 
         if (startIndex < 0) {
-            startIndex = startIndex + length.input;
+            startIndex = startIndex + input.length;
         }
         if (endIndex === undefined) {
             endIndex = input.length;
