@@ -1,22 +1,40 @@
 function multiply(a, b) {
-    resultMul = 0;
-    for (let i = 0; i < a; i++ ) {
-        resultMul = resultMul + b
+    var sum = 0;
+    for (var i = 0; i < Math.abs(b); i++) {
+      sum += a;
     }
-    return resultMul
+  
+    if (a < 0 && b < 0) {
+      return Math.abs(sum);
+    } else if (a < 0 && b > 0) {
+      return sum
+    } else if (a > 0 && b < 0) {
+      return -sum
+    } else {
+      return sum
+    }
 }
+  
 function divide(a, b) {
-    let quotient = 0;
-    while ( a >= b) {
-        a = a - b
-        quotient++
+    let aVerif = Math.sign(a)
+    let bVerif = Math.sign(b)
+    a = Math.abs(a)
+    b = Math.abs(b)
+    let i = 0
+    while(a >= b) {
+      a -= b
+      i++
     }
-    return quotient;
+    return (aVerif === bVerif ? i : -i);
 }
+  
 function modulo(a, b) {
-    let reste = 0;
-    while ( a >= b) {
-        a = a - b;
+    let aVerif = Math.sign(a)
+    a = Math.abs(a)
+    b = Math.abs(b)
+    while(a >= b) {
+      a -= b
     }
-    return a
+    return (aVerif < 0 ? -a : a); 
 }
+  
