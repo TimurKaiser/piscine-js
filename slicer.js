@@ -2,6 +2,10 @@
 
 function slice(input, startIndex, endIndex) {
     if (typeof input === 'string') {
+
+        if (startIndex < 0) {
+            startIndex = startIndex + length.input;
+        }
         if (endIndex === undefined) {
             endIndex = input.length;
         }
