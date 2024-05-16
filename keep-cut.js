@@ -25,6 +25,9 @@ function keepLast(string) {
 }
 
 function keepFirstLast(string) {
+    if (string.length < 4) {
+        return string;
+    }
     let temp = string.substring(0, 2);
     let result = temp + string.substring(string.length - 2);
     return result;
