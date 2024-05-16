@@ -7,15 +7,15 @@ function indexOf(array, value, startIndex = 0) {
     return -1;
 }
 
-function lastIndexOf(array, value) {
-    let lastIndex = -1;
-    for (let i = 0; i < array.length; i++) {
+function lastIndexOf(array, value, startIndex = array.length - 1) {
+    for (let i = startIndex; i >= 0; i--) {
         if (array[i] === value) {
-            lastIndex = i;
+            return i;
         }
     }
-    return lastIndex;
+    return -1;
 }
+
 
 function includes(array, value) {
     for (let i = 0; i < array.length; i++) {
