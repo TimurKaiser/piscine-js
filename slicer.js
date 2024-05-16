@@ -1,14 +1,16 @@
-function slice(arg, startIndex, endIndex) {
-    if (typeof arg === 'string') {
+// fait avec gpt a revoir j'ai saturéé
+
+function slice(input, startIndex, endIndex) {
+    if (typeof input === 'string') {
         if (endIndex === undefined) {
-            endIndex = arg.length;
+            endIndex = input.length;
         }
-        return arg.slice(startIndex, endIndex);
-    } else if (Array.isArray(arg)) {
+        return input.substring(startIndex, endIndex); // substring vas aller extrare a partir de l'index start ou l'index start et end
+    } else if (Array.isArray(input)) { // vaux mieux utiliser ca que typeof car l'array est un objet mais touts les objects ne sont pas des array
         if (endIndex === undefined) {
-            endIndex = arg.length;
+            endIndex = input.length;
         }
-        return arg.slice(startIndex, endIndex);
+        return input.slice(startIndex, endIndex);
     } else {
         return undefined;
     }
