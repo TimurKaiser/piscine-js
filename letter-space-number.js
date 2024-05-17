@@ -1,10 +1,10 @@
-function letterSpaceNumber(input) {
-    const regex = /([a-zA-Z]) (\d)(?![a-zA-Z\d])/g;
-    const matches = [];
-    let match;
-    while ((match = regex.exec(input)) !== null) {
-        matches.push(match[0]);
-    }
+function letterSpaceNumber(string) {
+    // [a-zA-Z] : Correspond à une lettre (majuscule ou minuscule).
+    //** ** : Suivie par un espace.
+    //\d : Suivie par un chiffre (0-9).
+    //(?!\w) : Assure que le chiffre n'est pas suivi par un caractère de mot (lettre, chiffre ou underscore).
+    const regex = /([a-zA-Z]) \d\e/g;
+    const matches = string.match(regex);
 
-    return matches;
+    return matches ? matches : [];
 }
