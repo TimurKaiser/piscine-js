@@ -17,4 +17,11 @@ const dna = {
     C: "G",
     T: "A",
     A: "U"
+};
+
+const rna = {
+    C: "G",
+    G: "C",
+    A: "T",
+    U: "A"
 }
