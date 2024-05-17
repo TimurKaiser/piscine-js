@@ -55,3 +55,4 @@ function trunc(nombre) {
     }
 }
 
+console.log(round(-3))
