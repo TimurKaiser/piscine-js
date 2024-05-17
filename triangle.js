@@ -1,9 +1,12 @@
 function triangle(string, number) {
-    let etg =  number;
     let str = string;
 
-    for (var i = 1; i <= etg; i++) {
-        console.log(str)
-        console.log("\n");
-  }
+    for (let i = 1; i <= number; i++) {
+        let row = "";
+        for (let j = 1; j <= i; j++) {
+            row += str; 
+        }
+        console.log(row);
+    }
 }
+
