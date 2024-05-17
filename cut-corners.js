@@ -12,7 +12,6 @@ function floor(nombre) {
     }
 }
 
-
 function round(nombre) {
     let temp = floor(nombre);
     let diff = nombre - temp;
@@ -34,6 +33,7 @@ function ceil(nombre) {
     }
 }
 
+
 function trunc(nombre) {
     if (nombre >= 0) {
         while (nombre >= 1) {
@@ -41,10 +41,10 @@ function trunc(nombre) {
         }
         return nombre + 1;
     } else {
-        while (nombre < 0) {
+        while (nombre <= -1) {
             nombre += 1;
         }
-        return nombre - 1;
+        return nombre;
     }
 }
 
