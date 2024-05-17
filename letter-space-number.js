@@ -3,7 +3,7 @@ function letterSpaceNumber(string) {
     //** ** : Suivie par un espace.
     //\d : Suivie par un chiffre (0-9).
     //(?!\w) : Assure que le chiffre n'est pas suivi par un caractère de mot (lettre, chiffre ou underscore).
-    const regex = /([a-zA-Z]) \d\e/g;
+    const regex = /([a-zA-Z]) \d\b/g;
     const matches = string.match(regex);
 
     return matches ? matches : [];
