@@ -1,58 +1,86 @@
-function floor(nombre) {
-    if (nombre >= 0) {
-        let result = 0;
-        while (nombre >= 1) {
-            nombre -= 1;
-            result += 1;
+function round(number) {
+    let negative = false;
+    if (number < 0) {
+        negative = true;
+        number = -number;
+    }
+    let count = 0;
+    while (!(number < 1 && number > -1)) {
+        number -= 1;
+        count++;
+    }
+    if (number < 0.5) {
+        if (negative) {
+            return -count;
+        } else {
+            return count;
         }
-        return result;
     } else {
-        let result = 0;
-        while (nombre < 0) {
-            nombre += 1;
-            result -= 1;
+        if (negative) {
+            return -count - 1;
+        } else {
+            return count + 1;
         }
-        return result - 1;
     }
 }
 
-
-function round(nombre) {
-    let floorValue = floor(nombre);
-    let diff = nombre - floorValue;
-    if (diff < 0.5) {
-        return floorValue;
+function floor(number) {
+    let negative = false;
+    if (number < 0) {
+        negative = true;
+        number = -number;
+    }
+    let numberCopy = number;
+    let count = 0;
+    while (!(numberCopy < 1 && numberCopy > -1)) {
+        numberCopy -= 1;
+        count++;
+    }
+    if (negative) {
+        return -count - 1;
     } else {
-        return floorValue + 1;
+        return count;
     }
 }
 
-
-function ceil(nombre) {
-    let floorValue = floor(nombre);
-    if (nombre > floorValue) {
-        return floorValue + 1;
+function ceil(number) {
+    if (!number) return 0;
+    let negative = false;
+    if (number < 0) {
+        negative = true;
+        number = -number;
+    }
+    let numberCopy = number;
+    let count = 0;
+    while (!(numberCopy < 1 && numberCopy >= 0)) {
+        numberCopy -= 1;
+        count++;
+    }
+    if (negative) {
+        return -count;
     } else {
-        return floorValue;
+        return count + 1;
     }
 }
 
-function trunc(nombre) {
-    if (nombre >= 0) {
-        let result = 0;
-        while (nombre >= 1) {
-            nombre -= 1;
-            result += 1;
-        }
-        return result;
-    } else {
-        let result = 0;
-        while (nombre < 0) {
-            nombre += 1;
-            result -= 1;
-        }
-        return result;
+function trunc(number) {
+    let count = 0;
+    if (number > 0xfffffffff) {
+        number -= 0xfffffffff;
+        count += 0xfffffffff;
     }
+    let negative = false;
+    if (number < 0) {
+        negative = true;
+        number = -number;
+    }
+    let numberCopy = number;
+    while (!(numberCopy < 1 && numberCopy > -1)) {
+        numberCopy -= 1;
+        count++;
+    }
+    if (negative) {
+        return -count;
+    }
+    return count;
 }
-
-console.log(round(-3))
