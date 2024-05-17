@@ -1,51 +1,57 @@
 function floor(nombre) {
     if (nombre >= 0) {
+        let result = 0;
         while (nombre >= 1) {
             nombre -= 1;
+            result += 1;
         }
-        return nombre + 1;
+        return result;
     } else {
+        let result = 0;
         while (nombre < 0) {
             nombre += 1;
+            result -= 1;
         }
-        return nombre - 1;
+        return result - 1;
     }
 }
+
 
 function round(nombre) {
-    let temp = floor(nombre);
-    let diff = nombre - temp;
+    let floorValue = floor(nombre);
+    let diff = nombre - floorValue;
     if (diff < 0.5) {
-        return temp;
+        return floorValue;
     } else {
-        return temp + 1;
+        return floorValue + 1;
     }
 }
-
 
 
 function ceil(nombre) {
-    let temp = floor(nombre);
-    if (nombre > temp) {
-        return temp + 1;
+    let floorValue = floor(nombre);
+    if (nombre > floorValue) {
+        return floorValue + 1;
     } else {
-        return temp;
+        return floorValue;
     }
 }
-
 
 function trunc(nombre) {
     if (nombre >= 0) {
+        let result = 0;
         while (nombre >= 1) {
             nombre -= 1;
+            result += 1;
         }
-        return nombre + 1;
+        return result;
     } else {
-        while (nombre <= -1) {
+        let result = 0;
+        while (nombre < 0) {
             nombre += 1;
+            result -= 1;
         }
-        return nombre;
+        return result;
     }
 }
-
 
