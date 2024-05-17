@@ -1,4 +1,4 @@
-const normal = /\bhi\b/;
+const normal = /hi/;
 const begin = /^hi/;
 const end = /hi$/;
 const beginEnd = /^hi$/;
