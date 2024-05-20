@@ -17,7 +17,7 @@ function isAfter(date1, date2) {
 
 function isBefore(date1, date2) {
     let result = date1 - date2
-    if(result > 0) {
+    if(result < 0) {
         return true
     } else {
         return false
