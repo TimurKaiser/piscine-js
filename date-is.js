@@ -16,10 +16,11 @@ function isAfter(date1, date2) {
 
 
 function isBefore(date1, date2) {
-    if(date1 > date2) {
-        return false
-    } else {
+    let result = date1 - date2
+    if(result > 0) {
         return true
+    } else {
+        return false
     }
 }
 
