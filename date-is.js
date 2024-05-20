@@ -37,6 +37,9 @@ function isFuture(date1) {
 
 
 function isPast(date1) {
+    if(!isValid(date1)){
+        return false
+    }
     let date2 = new Date();
     let result = date1 - date2
     if(result > 0) {
