@@ -28,7 +28,7 @@ function isBefore(date1, date2) {
 function isFuture(date1) {
     let  date2 = new Date();
     let result = date1 - date2;
-    if(result > O) {
+    if(result > 0) {
         return true;
     } else {
         return false;
