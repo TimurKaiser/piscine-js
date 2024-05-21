@@ -1,24 +1,13 @@
-function isLeapYear(year) {
-    let flag = false;
-
-    if (year % 4 === 0) {
-        flag = true;
-    }
-    if (year % 100 === 0) {
-        flag = false;
-    }
-    if (year % 400 === 0) {
-        flag = true;
-    }
-
-    return flag;
-}
-
 function countLeapYears(date) {
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
     let count = 0;
     const currentYear = date.getFullYear();
 
-    for (let year = currentYear; year > 0; year--) {
+    // Compte années bissextiles depuis 1 jusqu'à l'année -1 à celle donner
+    for (let year = 1; year < currentYear; year++) {
         if (isLeapYear(year)) {
             count++;
         }
