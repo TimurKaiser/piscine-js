@@ -1,25 +1,25 @@
+// PK CA MARCHE PAS
 function firstDayWeek(numWeek, yearString) {
-    let startYear = new Date(yearString + "-01-01");
-    let mondayCount = 0;
+    let startYear = new Date(yearString + "-01-01") 
+    let mondayCount = 1;
 
-    while (startYear.getDay() !== 1) {
-        startYear.setDate(startYear.getDate() + 1);
-    }
-    mondayCount = 1;
-
-    if (numWeek === 1) {
-        return formatDate(startYear);
+    if (mondayCount === numWeek) {
+        return formatDate(startYear) 
     }
 
     while (mondayCount < numWeek) {
-        startYear.setDate(startYear.getDate() + 7);
-        mondayCount++;
+        startYear.setDate(startYear.getDate() + 1);
+        if (startYear.getDay() === 1) { 
+            mondayCount++;
+        }
+        if (mondayCount === numWeek) {
+            return formatDate(startYear); 
+        }
     }
-
-    return formatDate(startYear);
 }
 
-function formatDate(date) {
+function formatDate(dateString) {
+    let date = new Date(dateString);
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear().toString();
@@ -28,8 +28,8 @@ function formatDate(date) {
         year = year.padStart(4, '0');
     }
 
-    //formate a jj-mm-aa
     let formattedDate = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
 
     return formattedDate;
 }
+
