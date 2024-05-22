@@ -16,10 +16,9 @@ function fahrenheitToCelsius(degrees) {
 }
 
 function trimTemp(arr) {
-    const regex = /\s+/g;
     return arr.map(obj => ({
-        city: obj.city,
-        temperature: obj.temperature.replace(regex, '')
+        ...obj, 
+        temperature: obj.temperature.trim()
     }));
 }
 
