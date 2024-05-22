@@ -9,9 +9,18 @@ function filter(array, func) {
 }
 
 function reject(array, func) {
-    return filter(array, (element, index, array) => func(element, index, array));
+    return filter(array, (element, index, array) => !func(element, index, array));
 }
 
-function partition(arr, func) {
-    return [filter(arr, func) , reject(arr, func)];
+function partition(array, func) {
+    const truthy = [];
+    const falsy = [];
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array)) {
+            truthy.push(array[i]);
+        } else {
+            falsy.push(array[i]);
+        }
+    }
+    return [truthy, falsy];
 }
