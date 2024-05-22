@@ -15,14 +15,21 @@ function fahrenheitToCelsius(degrees) {
     });
 }
 
-
+// CETTE FONCTION AUSSI A REVOIR JE COMPRENDS PAS MON ERREUR JE L'AI PASTE
 function tempForecasts(arr) {
-    return arr.map(obj => {
-        const celsius = fahrenheitToCelsius([obj.temperature])[0];
-        return `${celsius} in ${obj.city}, ${obj.state}`;
+    return arr.map((item) => {
+        return `${
+            Math.floor(
+                (Number(item.temperature.slice(0, -2)) - 32) * (5 / 9)
+            ).toString() + "°Celsius"
+        } in ${item.city}, ${item.state
+            .split(" ")
+            .map((word) => {
+                return word[0].toUpperCase() + word.slice(1);
+            })
+            .join(" ")}`;
     });
 }
-
 
 // function a revoir je comprebnds pas l'erreur reponse de gpt :
 function trimTemp(arr) {
