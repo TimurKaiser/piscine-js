@@ -13,7 +13,7 @@ function foldRight(array, fn, accumulator) {
 }
 function reduce(arr, func, accumulator) {
     let res = 0;
-    if (typeof accumulator == undefined) {
+    if (typeof accumulator == 'undefined') {
         accumulator = arr[0];
         res = 1;
     }
