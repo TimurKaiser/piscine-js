@@ -18,9 +18,8 @@ function fahrenheitToCelsius(degrees) {
 
 // function a revoir je comprebnds pas l'erreur reponse de gpt :
 function trimTemp(arr) {
-    const spaceBeforeUnitRegex = /\s+(?=°F?$)/;
-    return arr.map(obj => ({
-        ...obj,
-        temperature: obj.temperature.trim().replace(spaceBeforeUnitRegex, '') 
-    }));
+    return arr.map((item) => {
+        item.temperature = item.temperature.replaceAll(" ", "");
+        return item;
+    });
 }
