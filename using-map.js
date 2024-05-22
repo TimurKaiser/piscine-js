@@ -23,10 +23,10 @@ function trimTemp(arr) {
     }));
 }
 
-function tempForecasts(arr) {
-    return arr.map(obj => {
-        const celsius = fahrenheitToCelsius([obj.temperature])[0];
-        const state = upperCasingStates([obj.state])[0];
-        return `${celsius} in ${obj.city}, ${state}`;
-    });
+function trimTemp(arr) {
+    const regex = /\s+/g;
+    return arr.map(obj => ({
+        ...obj,
+        temperature: obj.temperature.replace(regex, '')
+    }));
 }
