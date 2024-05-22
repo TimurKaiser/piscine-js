@@ -15,10 +15,12 @@ function fahrenheitToCelsius(degrees) {
     });
 }
 
+
+// function a revoir je comprebnds pas l'erreur reponse de gpt :
 function trimTemp(arr) {
+    const spaceBeforeUnitRegex = /\s+(?=°F?$)/;
     return arr.map(obj => ({
-        ...obj, 
-        temperature: obj.temperature.trim()
+        ...obj,
+        temperature: obj.temperature.trim().replace(spaceBeforeUnitRegex, '') 
     }));
 }
-
