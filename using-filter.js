@@ -22,13 +22,11 @@ function filter1DistinctVowel(arr) {
     });
 }
 
-
 function multiFilter(arr) {
-    const vowelRegex = /^[aeiou]/i; // Réutilisation du même regex pour la comparaison avec le tag
     return arr.filter(obj => {
         return obj.capital.length >= 8 &&
-        !vowelRegex.test(obj.name) &&
-               vowelRegex.test(obj.tag) &&
-               obj.region!== 'South';
+              !/^[aeiou]/i.test(obj.name) &&
+                /[aeiou]/i.test(obj.tag) &&
+                obj.region!== 'South';
     });
 }
