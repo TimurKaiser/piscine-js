@@ -8,7 +8,7 @@ function map(array, functionn) {
 
 function flatMap(array, functionn) {
     let result = [];
-    for (let i = 0; i <= array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         let mappedValue = fn(array[i], i, array);
         if (Array.isArray(mappedValue)) {
             result = result.concat(mappedValue);
