@@ -12,8 +12,6 @@ function flatMap(array, functionn) {
         let mappedValue = fn(array[i], i, array);
         if (Array.isArray(mappedValue)) {
             result = result.concat(mappedValue);
-        } else {
-            result.push(mappedValue);
         }
     }
     return result;
