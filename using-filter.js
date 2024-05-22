@@ -16,12 +16,12 @@ function filter5Vowels(arr) {
 }
 
 function filter1DistinctVowel(arr) {
-    const singleDistinctVowelRegex = new RegExp('(?![^aeiou]*[aeiou])'); // Regex pour vérifier une seule voyelle distincte
     return arr.filter(str => {
-        const distinctVowels = Array.from(new Set(str.toLowerCase().match(singleDistinctVowelRegex)));
+        const distinctVowels = Array.from(new Set(str.toLowerCase().match(/[aeiou]/g)));
         return distinctVowels.length === 1;
     });
 }
+
 
 function multiFilter(arr) {
     const vowelRegex = /^[aeiou]/i; // Réutilisation du même regex pour la comparaison avec le tag
