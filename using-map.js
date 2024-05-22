@@ -24,9 +24,9 @@ function trimTemp(arr) {
 }
 
 function trimTemp(arr) {
-    const regex = /\s+/g;
+    const spaceRegex = /\s+/g;
     return arr.map(obj => ({
         ...obj,
-        temperature: obj.temperature.replace(regex, '')
+        temperature: obj.temperature.replace(spaceRegex, '')
     }));
 }
