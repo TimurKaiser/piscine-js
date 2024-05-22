@@ -16,6 +16,14 @@ function fahrenheitToCelsius(degrees) {
 }
 
 
+function tempForecasts(arr) {
+    return arr.map(obj => {
+        const celsius = fahrenheitToCelsius([obj.temperature])[0];
+        return `${celsius} in ${obj.city}, ${obj.state}`;
+    });
+}
+
+
 // function a revoir je comprebnds pas l'erreur reponse de gpt :
 function trimTemp(arr) {
     return arr.map((item) => {
