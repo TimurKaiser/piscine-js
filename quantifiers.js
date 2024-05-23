@@ -19,8 +19,8 @@ function some(array, func) {
 function none(array, func) {
     for (let i = 0; i < array.length; i++) {
         if (func(array[i])) {
-            return true;
+            return false;
         }
     }
-    return false;
+    return true;
 }
