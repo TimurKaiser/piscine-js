@@ -1,27 +1,27 @@
 import { styles } from "./pimp-my-style.data.js"
 
-var counter = 0;
-
+var compteur = 0;
 
 function pimp() {
     var button = document.querySelector("button.button");
-
     if (!button.classList.contains("unpimp")) {
-        button.classList.add(styles[counter]);
-        counter++;
+        button.classList.add(styles[compteur]);
+        compteur++;
     } else {
-        counter--;
-        button.classList.remove(styles[counter]);
-        if (counter === 0) {
+        compteur--;
+        button.classList.remove(styles[compteur]);
+        if (compteur === 0) {
             button.classList.toggle("unpimp");
         }
     }
+
     // compte si capteur est aller jusqua kla fin du tableau de styke
-    if (counter = styles.length) {
+    if (compteur === styles.length) {
         button.classList.toggle("unpimp");
     }
 }
 
-export  {
+export {
     pimp,
 }
+
