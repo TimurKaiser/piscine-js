@@ -2,6 +2,7 @@ import { styles } from "./pimp-my-style.data.js"
 
 var counter = 0;
 
+
 function pimp() {
     var button = document.querySelector("button.button");
 
@@ -17,6 +18,10 @@ function pimp() {
     }
     // compte si capteur est aller jusqua kla fin du tableau de styke
     if (counter = styles.length) {
-        button.classList.contains("unpimp");
+        button.classList.toggle("unpimp");
     }
+}
+
+export  {
+    pimp,
 }
