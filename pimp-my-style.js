@@ -16,7 +16,7 @@ function pimp() {
         }
     }
     // compte si capteur est aller jusqua kla fin du tableau de styke
-    if (counter === styles.length) {
+    if (counter = styles.length) {
         button.classList.toggle("unpimp");
     }
 }
