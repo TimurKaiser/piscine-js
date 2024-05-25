@@ -7,9 +7,9 @@ function pimp() {
 
     if (!button.classList.contains("unpimp")) {
         button.classList.add(styles[counter]);
-        counter++;
-    } else {
         counter--;
+    } else {
+        counter++;
         button.classList.remove(styles[counter]);
         if (counter === 0) {
             button.classList.toggle("unpimp");
