@@ -18,7 +18,7 @@ export function repair(...ids) {
         let brick = document.getElementById(id);
         brick.getAttribute("foundation")
             ? (brick.dataset.repaired = "in progress")
-            : (brick.dataset.repaired =);
+            : (brick.dataset.repaired = false);
     });
 }
 
