@@ -5,7 +5,7 @@ function generateClasses() {
     const style = document.createElement("style");
 
     colors.forEach((color) => {
-        style.innerHTML += `.${color} {\n  background: ${color};\n }\n\n`;
+        style.innerHTML += `.${color} { background: ${color}; }\n`;
     });
 
     head.appendChild(style);
@@ -15,12 +15,7 @@ function generateColdShades() {
     const container = document.body;
 
     const coldColors = colors.filter(color =>
-        color.includes('blue') ||
-        color.includes('turquoise') ||
-        color.includes('green') ||
-        color.includes('cyan') ||
-        color.includes('navy') ||
-        color.includes('purple')
+        color.includes('aqua') || color.includes('blue') || color.includes('turquoise') || color.includes('green') || color.includes('cyan') || color.includes('navy') || color.includes('purple')
     );
 
     coldColors.forEach(color => {
