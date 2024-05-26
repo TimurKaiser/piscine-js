@@ -1,100 +1,84 @@
 import { gossips } from "./gossip-grid.data.js";
 
 function grid() {
-    renderRanges();
-    renderGossipForm();
-    renderGossips();
-}
-
-function renderGossipForm() {
-    const form = document.createElement("form");
-    form.classList.add("gossip-form");
-
-    const textarea = document.createElement("textarea");
-    const button = document.createElement("button");
+    ranges();
+    let form = document.createElement("form");
+    form.classList.add("gossip");
+    let textarea = document.createElement("textarea");
+    let button = document.createElement("button");
     button.innerHTML = "Share gossip!";
     button.type = "submit";
-    button.addEventListener("click", handleGossipSubmission);
-
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        let gossip = textarea.value;
+        if (gossip.length > 0) {
+            gossips.unshift(gossip);
+            document.querySelectorAll(".gossip").forEach((card, i) => {
+                if (i > 0) card.remove();
+            });
+            textarea.value = "";
+            renderGossips();
+        }
+    });
     form.appendChild(textarea);
     form.appendChild(button);
     document.body.appendChild(form);
-}
-
-function handleGossipSubmission(event) {
-    event.preventDefault();
-    const gossip = event.target.form.querySelector("textarea").value;
-    if (gossip.length > 0) {
-        gossips.unshift(gossip);
-        removeAllGossipsExceptFirst();
-        event.target.form.querySelector("textarea").value = "";
-        renderGossips();
-    }
-}
-
-function removeAllGossipsExceptFirst() {
-    document.querySelectorAll(".gossip:not(:first-child)").forEach(card => card.remove());
+    renderGossips();
 }
 
 function renderGossips() {
-    const gossipContainer = document.createElement("div");
-    gossipContainer.classList.add("gossip-container");
-
-    gossips.forEach(gossip => {
-        const div = document.createElement("div");
+    gossips.forEach((gossip) => {
+        let div = document.createElement("div");
         div.classList.add("gossip");
         div.innerHTML = gossip;
-        gossipContainer.appendChild(div);
-    });
-
-    document.body.appendChild(gossipContainer);
-}
-
-function renderRanges() {
-    const rangesContainer = document.createElement("div");
-    rangesContainer.classList.add("ranges-container");
-
-    const widthRange = createRangeInput("width", 200, 800, 400, handleWidthChange);
-    const fontSizeRange = createRangeInput("fontSize", 20, 40, 30, handleFontSizeChange);
-    const backgroundColorRange = createRangeInput("background", 20, 75, 50, handleBackgroundColorChange);
-
-    rangesContainer.appendChild(widthRange);
-    rangesContainer.appendChild(fontSizeRange);
-    rangesContainer.appendChild(backgroundColorRange);
-
-    document.body.appendChild(rangesContainer);
-}
-
-function createRangeInput(id, min, max, value, changeHandler) {
-    const rangeInput = document.createElement("input");
-    rangeInput.type = "range";
-    rangeInput.id = id;
-    rangeInput.min = min;
-    rangeInput.max = max;
-    rangeInput.value = value;
-    rangeInput.addEventListener("input", changeHandler);
-    return rangeInput;
-}
-
-function handleWidthChange(event) {
-    const cards = document.querySelectorAll(".gossip");
-    cards.forEach(card => {
-        card.style.width = event.target.value + "px";
+        document.body.appendChild(div);
     });
 }
 
-function handleFontSizeChange(event) {
-    const cards = document.querySelectorAll(".gossip");
-    cards.forEach(card => {
-        card.style.fontSize = event.target.value + "px";
+function ranges() {
+    let ranges = document.createElement("div");
+    ranges.classList.add("ranges");
+    let widthRange = document.createElement("input");
+    widthRange.type = "range";
+    widthRange.id = "width";
+    widthRange.min = "200";
+    widthRange.max = "800";
+    widthRange.value = "400";
+    widthRange.addEventListener("input", (e) => {
+        let cards = document.querySelectorAll(".gossip");
+        cards.forEach((card) => {
+            card.style.width = e.target.value + "px";
+        });
     });
-}
-
-function handleBackgroundColorChange(event) {
-    const cards = document.querySelectorAll(".gossip");
-    cards.forEach(card => {
-        card.style.backgroundColor = `hsl(280, 50%, ${event.target.value}%)`;
+    let fontSizeRange = document.createElement("input");
+    fontSizeRange.type = "range";
+    fontSizeRange.id = "fontSize";
+    fontSizeRange.min = "20";
+    fontSizeRange.max = "40";
+    fontSizeRange.value = "30";
+    fontSizeRange.addEventListener("input", (e) => {
+        let cards = document.querySelectorAll(".gossip");
+        cards.forEach((card) => {
+            card.style.fontSize = e.target.value + "px";
+        });
     });
+    let backgroundColorRange = document.createElement("input");
+    backgroundColorRange.type = "range";
+    backgroundColorRange.id = "background";
+    backgroundColorRange.min = "20";
+    backgroundColorRange.max = "75";
+    backgroundColorRange.value = "50";
+    backgroundColorRange.addEventListener("input", (e) => {
+        let cards = document.querySelectorAll(".gossip");
+        cards.forEach((card) => {
+            card.style.backgroundColor = `hsl(280, 50%, ${e.target.value}%)`;
+        });
+    });
+    ranges.appendChild(widthRange);
+    ranges.appendChild(fontSizeRange);
+    ranges.appendChild(backgroundColorRange);
+    document.body.appendChild(ranges);
 }
 
 export { grid };
+
