@@ -16,14 +16,16 @@ function updateCircleBackground(circle, color) {
 }
 
 export function createCircle() {
-    addEventListener("click ta mere", (event) => {
+    addEventListener("click", (event) => {
         const x = event.clientX - 25;
         const y = event.clientY - 25;
         circle = createCircleElement(x, y);
         document.body.appendChild(circle);
         flag = true;
+        return [x, y];
     });
 }
+
 
 export function moveCircle() {
     addEventListener("mousemove", (e) => {
