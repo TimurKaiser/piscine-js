@@ -1,66 +1,73 @@
 export function pick() {
-    // Création d'un élément div pour afficher les valeurs HSL
-    const hslDiv = document.createElement("div");
-    hslDiv.className = "text hsl";
-    document.body.appendChild(hslDiv);
+    const div1 = document.createElement("div");
+    div1.className = "text hsl";
+    document.body.appendChild(div1);
 
-    // Création d'un élément SVG pour les axes X et Y
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("height", window.innerHeight);
     svg.setAttribute("width", window.innerWidth);
+
+    const linex = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    linex.setAttribute("id", "axisY");
+    linex.style.stroke = "white";
+    linex.style.strokeWidth = 1;
+
+    const liney = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    liney.setAttribute("id", "axisX");
+    liney.style.stroke = "white";
+    liney.style.strokeWidth = 1;
+
+    svg.appendChild(liney);
+    svg.appendChild(linex);
     document.body.appendChild(svg);
 
-    // Création des lignes pour les axes X et Y
-    const axisX = createLine();
-    const axisY = createLine();
-    svg.appendChild(axisX);
-    svg.appendChild(axisY);
+    const removeElements = (selectors) => {
+        selectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(element => element.remove());
+        });
+    };
 
-    // Fonction pour créer une ligne SVG
-    function createLine() {
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.style.stroke = "white";
-        line.style.strokeWidth = 1;
-        return line;
-    }
+    addEventListener("mousemove", e => {
+        removeElements([".hue", ".hsl", ".luminosity"]);
 
-    // Ajout d'écouteurs d'événements pour suivre le mouvement de la souris et la position du clic
-    document.addEventListener("mousemove", updateColorAndAxes);
-    document.addEventListener("click", copyHSLValue);
+        const x = e.clientX / window.innerWidth * 360;
+        const y = e.clientY / window.innerHeight * 100;
 
-    // Fonction pour mettre à jour la couleur de fond et les axes en fonction de la position de la souris
-    function updateColorAndAxes(event) {
-        // Calcul des valeurs HSL en fonction de la position de la souris
-        const x = event.clientX / window.innerWidth * 360;
-        const y = event.clientY / window.innerHeight * 100;
-        const backgroundColor = `hsl(${x}, 50%, ${y}%)`;
+        document.body.style.background = `hsl(${x}, 50%, ${y}%)`;
 
-        // Mise à jour du fond de la page
-        document.body.style.background = backgroundColor;
+        linex.setAttribute("x1", 0);
+        linex.setAttribute("y1", e.clientY);
+        linex.setAttribute("x2", window.innerWidth);
+        linex.setAttribute("y2", e.clientY);
 
-        // Mise à jour des positions des lignes des axes X et Y
-        axisX.setAttribute("x1", 0);
-        axisX.setAttribute("y1", event.clientY);
-        axisX.setAttribute("x2", window.innerWidth);
-        axisX.setAttribute("y2", event.clientY);
+        liney.setAttribute("x1", e.clientX);
+        liney.setAttribute("y1", 0);
+        liney.setAttribute("x2", e.clientX);
+        liney.setAttribute("y2", window.innerHeight);
 
-        axisY.setAttribute("x1", event.clientX);
-        axisY.setAttribute("y1", 0);
-        axisY.setAttribute("x2", event.clientX);
-        axisY.setAttribute("y2", window.innerHeight);
+        const hue = document.createElement("div");
+        hue.className = "hue text";
+        hue.innerHTML = `hue<br>${Math.round(x)}`;
+        document.body.appendChild(hue);
 
-        // Mise à jour de l'affichage des valeurs HSL
-        hslDiv.innerHTML = `hsl(${Math.round(x)}, 50%, ${Math.round(y)}%)`;
-    }
+        const hsl = document.createElement("div");
+        hsl.className = "hsl text";
+        hsl.innerHTML = `hsl(${Math.round(x)}, 50%, ${Math.round(y)}%)`;
+        document.body.appendChild(hsl);
 
-    // Fonction pour copier la valeur HSL actuelle lors d'un clic
-    function copyHSLValue() {
-        const hslValue = hslDiv.innerHTML;
+        const luminosity = document.createElement("div");
+        luminosity.className = "luminosity text";
+        luminosity.innerHTML = `${Math.round(y)}<br>luminosity`;
+        document.body.appendChild(luminosity);
+    });
+
+    addEventListener("click", () => {
+        const val = document.querySelector(".hsl").innerHTML;
         const input = document.createElement("input");
         document.body.appendChild(input);
-        input.value = hslValue;
+        input.value = val;
         input.select();
         document.execCommand("copy");
         document.body.removeChild(input);
-    }
+    });
 }
