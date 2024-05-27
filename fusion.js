@@ -1,6 +1,6 @@
 function fusion(obj1, obj2) {
     //fait a l'aide de phind c'etait tellement simple en réalité 
-
+    
     // Fusionne les objets en utilisant Object.assign
     let result = Object.assign({}, obj1, obj2);
   
@@ -21,10 +21,12 @@ function fusion(obj1, obj2) {
     // Traite spécifiquement les nombres
     Object.keys(result).forEach(key => {
       if (typeof result[key] === 'number') {
-        result[key] += (obj2[key] || 0);
+        result[key] += (obj2[key] || 0); // Correction ici
       }
     });
   
     return result;
-}
+  }
   
+  
+//console.log(fusion({ nbr: 12 }, { nbr: 23 }).nbr);
