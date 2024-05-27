@@ -14,17 +14,17 @@ function fusion(obj1, obj2) {
     // Traite spécifiquement les chaînes de caractères
     Object.keys(result).forEach(key => {
       if (typeof result[key] === 'string') {
-        result[key] += (obj2[key] || '').trim()? ' ' + (obj2[key] || '') : '';
+        result[key] += (obj1[key] || '').trim()? ' ' + (obj2[key] || '') : '';
       }
     });
   
     // Traite spécifiquement les nombres
     Object.keys(result).forEach(key => {
       if (typeof result[key] === 'number') {
-        result[key] += (obj2[key] || 0);
+        result[key] += (obj1[key] || 0);
       }
     });
   
-    return
+    return result;
 }
   
