@@ -14,7 +14,7 @@ function fusion(obj1, obj2) {
     // Traite spécifiquement les chaînes de caractères
     Object.keys(result).forEach(key => {
       if (typeof result[key] === 'string') {
-        result[key] += (obj2[key] || '').trim()? ' ' + (obj1[key] || '') : '';
+        result[key] += (obj2[key] || '').trim()? ' ' + (obj2[key] || '') : '';
       }
     });
   
