@@ -1,31 +1,39 @@
+// fait avex phind a revoir
+
 function fusion(obj1, obj2) {
-    // Fusionne les objets en utilisant Object.assign
-    let result = Object.assign({}, obj1, obj2);
+    // Crée une copie superficielle de obj1 pour stocker le résultat
+    const result = {...obj1 };
   
-    // Traite spécifiquement les tableaux
-    Object.keys(result).forEach(key => {
-      if (Array.isArray(result[key])) {
-        result[key] = [...result[key],...(obj2[key] || [])];
+    // Parcoure chaque clé présente dans obj1
+    Object.keys(obj1).forEach(key => {
+      // Vérifie si les valeurs associées à la clé dans obj1 et obj2 sont des tableaux
+      if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+        // Concatène les tableaux
+        result[key] = [...obj1[key],...obj2[key]];
+      } 
+      // Vérifie si les valeurs associées à la clé dans obj1 et obj2 sont des chaînes de caractères
+      else if (typeof obj1[key] === 'string' && typeof obj2[key] === 'string') {
+        // Concatène les chaînes de caractères avec un espace
+        result[key] = `${obj1[key]} ${obj2[key]}`;
+      } 
+      // Vérifie si les valeurs associées à la clé dans obj1 et obj2 sont des nombres
+      else if (typeof obj1[key] === 'number' && typeof obj2[key] === 'number') {
+        // Additionne les nombres
+        result[key] = obj1[key] + obj2[key];
+      } 
+      // Vérifie si les valeurs associées à la clé dans obj1 et obj2 sont des objets (et non null)
+      else if (typeof obj1[key] === 'object' && obj1[key]!== null && typeof obj2[key] === 'object' && obj2[key]!== null) {
+        // Fait une fusion récursive des objets
+        result[key] = fusion(obj1[key], obj2[key]);
+      } 
+      // Vérifie si la clé n'existe pas déjà dans result
+      else if (!result.hasOwnProperty(key)) {
+        // Copie la valeur de la clé depuis obj2 vers result
+        result[key] = obj2[key];
       }
     });
   
-    // Traite spécifiquement les chaînes de caractères
-    Object.keys(result).forEach(key => {
-      if (typeof result[key] === 'string') {
-        result[key] += (obj2[key] || '').trim()? ' ' + (obj2[key] || '') : '';
-      }
-    });
-  
-    // Traite spécifiquement les nombres
-    Object.keys(result).forEach(key => {
-      if (typeof result[key] === 'number') {
-        result[key] += Number(obj2[key]) || 0; // Assurez-vous que l'addition est effectuée correctement
-      }
-    });
-  
+    // Retourne le résultat fusionné
     return result;
-  }
-  
-  // Test
-  console.log(fusion({ nbr: 12 }, { nbr: 23 }).nbr); // Devrait afficher 35
+}
   
