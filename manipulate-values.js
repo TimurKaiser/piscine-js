@@ -8,7 +8,7 @@ function filterValues(obj, callback) {
     return result;
 }
 
-function mapValues() {
+function mapValues(obj, callback) {
     let result = {}
     for (let key in obj) {
         res[key] = callback(obj[key]);
