@@ -20,14 +20,23 @@ function mapKeys(obj, callback) {
     return transformedObj;
 }
 
+
 function reduceKeys(obj, callback, initialValue) {
-    let value = initialValue || "";
+    let undef = false;
 
-    Object.keys(obj).sort().forEach(key => {
-        if (!value.includes(key)) {
-            value += callback(value, key, initialValue) + ", ";
-        }
-    });
+    if (initialValue === undefined) {
+        initialValue = "";
+        undef = true;
+    }
+    
+    let result = Object.keys(obj).reduce((acc, curr) => {
+        return callback(acc, curr, initialValue);
+    }, initialValue);
 
-    return value.slice(0, -2);
+    if (typeof result !== "number") {
+        if (res.slice(0, 2) === ", ") result = result.slice(2);
+        if (undef && result[0] === ":") result = result.slice(1);
+    }
+
+    return result;
 }
