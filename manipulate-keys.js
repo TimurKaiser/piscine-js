@@ -20,7 +20,6 @@ function mapKeys(obj, callback) {
     return transformedObj;
 }
 
-
 function reduceKeys(obj, callback, initialValue) {
     let undef = false;
 
@@ -34,7 +33,7 @@ function reduceKeys(obj, callback, initialValue) {
     }, initialValue);
 
     if (typeof result !== "number") {
-        if (res.slice(0, 2) === ", ") result = result.slice(2);
+        if (result.slice(0, 2) === ", ") result = result.slice(2);
         if (undef && result[0] === ":") result = result.slice(1);
     }
 
