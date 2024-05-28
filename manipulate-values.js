@@ -17,6 +17,9 @@ function mapValues(obj, callback) {
 }
 
 function reduceValues(obj, callback, acc) {
+    if (acc = undefined) {
+        acc = 0;
+    }
     for (let key in obj) {
         acc = callback(acc, obj[key]);
     }
