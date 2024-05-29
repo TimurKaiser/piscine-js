@@ -25,5 +25,5 @@ function pronoun(count, delay, callback) {
         });
     }
 
-    return tryCallback;
+    return { };
 }
