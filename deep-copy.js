@@ -1,6 +1,6 @@
 function deepCopy(obj) {
 
-    if( typeof obj !== Object) {
+    if( typeof obj !== 'object' || obj === null) {
         return obj;
     }
     // Si l'objet est un tableau, crée une copie du tableau en prenant récursivement chaque élément
