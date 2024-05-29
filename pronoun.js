@@ -1,29 +1,25 @@
 function pronoun(count, delay, callback) {
     let attempts = 0;
 
-    function tryCallback(...args) {
-        return new Promise((resolve, reject) => {
-            const attempt = () => {
-                callback(...args)
-                    .then(resolve)
-                    .catch(err => {
-                        attempts++;
-                        if (attempts >= count) {
-                            reject(err);
-                        } else {
-                            attempt();
-                        }
-                    });
-            };
-
-            const timer = setTimeout(() => {
-                clearTimeout(timer);
-                reject(new Error('timeout'));
-            }, delay);
-
-            attempt();
-        });
+    return async function (...args) {
+        while (true) {
+            try {
+                const result = await Promise.race([
+                    callback(...args),
+                    new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            reject(new Error('timeout'));
+                        }, delay);
+                    })
+                ]);
+                
+                return result;
+            } catch (error) {
+                attempts++;
+                if (attempts >= count) {
+                    throw error;
+                }
+            }
+        }
     }
-
-    return { };
 }
