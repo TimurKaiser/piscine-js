@@ -11,7 +11,7 @@ function defaultCurry(obj1) {
     };
 }
   
-function mapCurry() {
+function mapCurry(func) {
     return function (obj2) {
         let res = {};
         for (let key in obj2) {
