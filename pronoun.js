@@ -1,9 +1,8 @@
-var obj = {};
-var arr = str.split("\n").join(" ").split(" ");
-var pronouns = /^(i|you|he|she|it|they|we)$/i;
-
-
 function pronoun(str) {
+
+    var obj = {};
+    var arr = str.split("\n").join(" ").split(" ");
+    var pronouns = /^(i|you|he|she|it|they|we)$/i;
   
     // Boucle chaque mot dans le tableau
     for (var i = 0; i < arr.length; i++) {
