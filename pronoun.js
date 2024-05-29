@@ -17,7 +17,9 @@ function pronoun(str) {
 
         // Incrémentation du compte et ajout du mot suivant dans le tableau des mots
         pronounObj[pronoun].count++;
-        pronounObj[pronoun].word.push(word);
+        if (!pronounObj[pronoun].word.includes(word)) {
+            pronounObj[pronoun].word.push(word);
+        }
     });
 
     return pronounObj;
