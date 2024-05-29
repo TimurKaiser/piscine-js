@@ -1,4 +1,8 @@
 function deepCopy(obj) {
+
+    if( typeof obj !== Object) {
+        return obj;
+    }
     // Si l'objet est un tableau, crée une copie du tableau en prenant récursivement chaque élément
     if (Array.isArray(obj)) {
         const copyArr = [];
