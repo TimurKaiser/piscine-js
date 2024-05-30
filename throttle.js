@@ -2,26 +2,35 @@
 // throttle peut compter le nombre de scroll dans un site web et permet de gerer le flux de donner pour pas surcharger la page
 
 function throttle(callback, delay) {
-    var last; // Dernière fois que la fonction de rappel a été exécutée
-    var timer; // Timer pour planifier l'exécution retardée
-    return function() {
-        var context = this; // Contexte de `this` de la fonction retournée
-        var now = +new Date(); // Heure actuelle en millisecondes
-        var args = arguments; // Arguments passés à la fonction retournée
+    let last = 0; // Dernière fois que la fonction de rappel a été exécutée
+    let timer; // Timer pour planifier l'exécution retardée
 
-        if (last && now < last + delay) {
-            // Si la dernière exécution est trop récente, réinitialise le timer
-            clearTimeout(timer); // Annule le timer précédent
+    return function() {
+        const context = this; // Contexte de `this` de la fonction retournée
+        const now = +new Date(); // Heure actuelle en millisecondes
+        const args = arguments; // Arguments passés à la fonction retournée
+
+        const remaining = delay - (now - last); // Temps restant avant la prochaine exécution possible
+
+        if (remaining <= 0 || last === 0) {
+            // Si le délai est écoulé ou si c'est le premier appel
+            if (timer) {
+                clearTimeout(timer); // Annuler tout timer en cours
+                timer = null;
+            }
+            last = now; // Mettre à jour le dernier moment d'exécution
+            callback.apply(context, args); // Exécuter immédiatement la fonction de rappel
+        } else if (!timer) {
+            // Planifier l'exécution si aucune planification en cours
             timer = setTimeout(function() {
-                last = now; // Met à jour le dernier moment d'exécution
-                callback.apply(context, args); // Exécute le callback avec le contexte et les arguments
-            }, delay - (now - last)); // Délai restant pour atteindre la prochaine exécution
-        } else {
-            last = now; // Met à jour le dernier moment d'exécution
-            callback.apply(context, args); // Exécute le callback immédiatement
+                last = +new Date(); // Mettre à jour le dernier moment d'exécution après l'exécution différée
+                timer = null; // Réinitialiser le timer
+                callback.apply(context, args); // Exécuter la fonction de rappel
+            }, remaining);
         }
     };
 }
+
 
 // pour information leading marche comme dans debounce, c'est nous qui déterminons quand est ce que la fonction commence
 // leading se base sur le premier element et trailing justement sur le dernier 
