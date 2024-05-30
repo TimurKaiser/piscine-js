@@ -1,18 +1,18 @@
 function interpolation({ step, start, end, callback, duration }) {
-    // Calculer l'intervalle entre chaque point d'interpolation
-    const interval = (end - start) / step;  // C'est ici que nous divisons par step pour obtenir l'intervalle
-    // Calculer le délai entre chaque appel de callback
-    const delay = duration / step;
+    const interval = (end - start) / step;  // Distance entre chaque point
+    const delay = duration / step;  // Délai entre chaque appel de callback
 
-    for (let i = 0; i < step; i++) {
-        // Calculer la position actuelle
-        const x = start + i * interval;
-        // Calculer le temps écoulé
-        const y = i * delay;
+    function scheduleCallback(i) {
+        if (i < step) {
+            const x = start + i * interval;  // Position actuelle
+            const y = i * delay;  // Temps écoulé
 
-        // Appeler le callback après le délai approprié
-        setTimeout(() => {
-            callback([x, y]);
-        }, y);
+            setTimeout(() => {
+                callback([x, y]);  // Appeler le callback
+                scheduleCallback(i + 1);  // Appel récursif pour le prochain point
+            }, y);
+        }
     }
+
+    scheduleCallback(0);  // Initialiser le premier appel
 }
