@@ -1,4 +1,5 @@
 // doc pour throtlle https://grafikart.fr/tutoriels/debounce-throttle-642
+// throttle peut compter le nombre de scroll dans un site web et permet de gerer le flux de donner pour pas surcharger la page
 
 function throttle(callback, delay) {
     var last; // Dernière fois que la fonction de rappel a été exécutée
@@ -36,7 +37,7 @@ function opThrottle(callback, delay, options = {}) {
         const args = arguments; // Arguments passés à la fonction retournée
         const now = +new Date(); // Heure actuelle en millisecondes
 
-        if (!last && !leading) {
+        if (!last && leading === false) {
             // Si leading est faux et c'est le premier appel, initialiser last à maintenant
             last = now;
         }
