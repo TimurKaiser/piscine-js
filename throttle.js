@@ -25,7 +25,7 @@ function throttle(callback, delay) {
 // pour information leading marche comme dans debounce, c'est nous qui déterminons quand est ce que la fonction commence
 // leading se base sur le premier element et trailing justement sur le dernier 
 // a savoir que ce sont des options et du coup il faudrait rajouter selon les besoin
-function throttle(callback, delay, options = {}) {
+function opThrottle(callback, delay, options = {}) {
     let last = 0; // Dernière fois que la fonction de rappel a été exécutée
     let timer; // Timer pour planifier l'exécution retardée
     const leading = options.leading !== undefined ? options.leading : true; // Option leading par défaut à true
