@@ -36,12 +36,14 @@ function throttle(callback, delay) {
 // leading se base sur le premier element et trailing justement sur le dernier 
 // a savoir que ce sont des options et du coup il faudrait rajouter selon les besoin
 
+
 function opThrottle(callback, delay, options = {}) {
     let lastCallTime = 0; // Dernière fois que la fonction de rappel a été exécutée
     let timer = null; // Timer pour planifier l'exécution retardée
     const leading = options.leading !== undefined ? options.leading : true; // Option leading par défaut à true
     const trailing = options.trailing !== undefined ? options.trailing : true; // Option trailing par défaut à true
     let lastArgs = null; // Derniers arguments passés à la fonction
+    let lastContext = null; // Dernier contexte de `this`
 
     return function() {
         const context = this; // Contexte de `this` de la fonction retournée
@@ -69,11 +71,13 @@ function opThrottle(callback, delay, options = {}) {
                 clearTimeout(timer); // Annuler tout timer en cours
             }
             lastArgs = args; // Mémoriser les derniers arguments
+            lastContext = context; // Mémoriser le dernier contexte
             timer = setTimeout(function() {
                 lastCallTime = leading === false ? 0 : +new Date(); // Si leading est faux, réinitialiser lastCallTime après l'exécution
                 timer = null;
-                callback.apply(context, lastArgs); // Exécuter la fonction de rappel avec les derniers arguments
+                callback.apply(lastContext, lastArgs); // Exécuter la fonction de rappel avec les derniers arguments et contexte
                 lastArgs = null; // Réinitialiser les derniers arguments après l'exécution
+                lastContext = null; // Réinitialiser le dernier contexte après l'exécution
             }, remaining);
         }
     };
