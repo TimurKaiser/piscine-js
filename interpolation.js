@@ -1,18 +1,21 @@
-function interpolation({ step, start, end, callback, duration }) {
-    const interval = (end - start) / step;  // Distance entre chaque point
-    const delay = duration / step;  // Délai entre chaque appel de callback
-
-    function scheduleCallback(i) {
-        if (i < step) {
-            const x = start + i * interval;  // Position actuelle
-            const y = i * delay;  // Temps écoulé
-
-            setTimeout(() => {
-                callback([x, y]);  // Appeler le callback
-                scheduleCallback(i + 1);  // Appel récursif pour le prochain point
-            }, y);
-        }
-    }
-
-    scheduleCallback(0);  // Initialiser le premier appel
+function interpolation({
+    step = 0,
+    start = 0,
+    end = 0,
+    callback = () => {},
+    duration = 0,
+} = {}) {
+    const delta = (end - start) / step;
+    let current = start
+    let i = 0;
+  
+    const intervalId = setInterval(() => {
+      callback([current, (duration / step) * (i + 1)])
+      current += delta
+      i++;
+  
+      if (i >= step) {
+        clearInterval(intervalId)
+      }
+    }, duration / step)
 }
